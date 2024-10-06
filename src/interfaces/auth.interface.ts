@@ -1,25 +1,26 @@
-interface auth {
+interface IAuth {
 	auth: boolean
 	message: string
 }
 
-interface authError {
+interface IAuthError {
 	auth: false
 	code: string
 	sqlMessage: string
 }
 
-interface singUpOk extends auth {
+interface ISingOk extends IAuth {
 	tokenOk: boolean
 }
-
-interface singUpNot extends auth {
+interface ISingNot<T> extends IAuth {
 	tokenOk: boolean
-	more: any
+	because: T
 }
 
-interface singInOk extends auth {
+interface ISingInOk extends IAuth {
 	token: string
 }
 
-export { authError, singUpOk, singUpNot }
+interface ISingInNot extends IAuth {}
+
+export { IAuthError, ISingOk, ISingNot, ISingInOk, ISingInNot }
